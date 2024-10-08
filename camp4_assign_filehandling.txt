@@ -1,0 +1,198 @@
+  1. Append a text to the existing text in a file. Other files should be
+able to interact with this file only in the Read Mode while your
+application is interacting with the file.
+
+        using System.IO;
+
+ class Program
+ {
+     static void Main()
+     {
+         string file_path = @"D:\camp4file.txt";
+
+         
+         FileStream fs = File.Create(file_path);
+
+         
+         fs.Close();
+
+         if (File.Exists(file_path))
+         {
+            
+             string content = "Good morning Thanya";
+             
+             File.WriteAllText(file_path, content);
+             string content1 = "Welcome";
+             File.AppendAllText(file_path, "\n" + content1);
+
+            
+             Console.WriteLine("File Created and Reading The Data");
+             string file_content = File.ReadAllText(file_path);
+             Console.WriteLine(file_content);
+
+             
+             string substring = file_content.Length >= 7 ? file_content.Substring(2, 5) : "Not enough content";
+             Console.WriteLine("Retrieved characters:");
+             Console.WriteLine(substring);
+
+             
+             Console.Write("Enter destination file path: ");
+             string destinationFilePath = Console.ReadLine();
+
+             try
+             {
+                
+                 if (File.Exists(file_path))
+                 {
+                    
+                     File.Copy(file_path, destinationFilePath, true); 
+                     Console.WriteLine("File copied successfully.");
+                 }
+                 else
+                 {
+                     Console.WriteLine("Source file not found.");
+                 }
+             }
+             catch (Exception ex)
+             {
+                 Console.WriteLine("Error: " + ex.Message);
+             }
+         }
+         else
+         {
+             Console.WriteLine("File does not exist.");
+         }
+
+         Console.ReadKey(); 
+     }
+ }
+
+
+2.Retrieve five characters starting from the third character and
+display it in a console
+     
+
+     class Program
+ {
+     static void Main()
+     {
+         string file_path = @"D:\camp4file.txt";
+
+         
+         FileStream fs = File.Create(file_path);
+
+         
+         fs.Close();
+
+         if (File.Exists(file_path))
+         {
+            
+             string content = "Good morning Thanya";
+             
+             File.WriteAllText(file_path, content);
+            
+            
+             Console.WriteLine("File Created and Reading The Data");
+             string file_content = File.ReadAllText(file_path);
+             Console.WriteLine(file_content);
+
+             
+             string substring = file_content.Length >= 7 ? file_content.Substring(2, 5) : "Not enough content";
+             Console.WriteLine("Retrieved characters:");
+             Console.WriteLine(substring);
+
+             
+            
+
+             try
+             {
+                
+                 if (File.Exists(file_path))
+                 {
+                    
+                     File.Copy(file_path, destinationFilePath, true); 
+                     Console.WriteLine("File copied successfully.");
+                 }
+                 else
+                 {
+                     Console.WriteLine("Source file not found.");
+                 }
+             }
+             catch (Exception ex)
+             {
+                 Console.WriteLine("Error: " + ex.Message);
+             }
+         }
+         else
+         {
+             Console.WriteLine("File does not exist.");
+         }
+
+         Console.ReadKey(); 
+     }
+ }
+
+     
+3.Copy a file to another destination specified by the user.
+  
+  class Program
+ {
+     static void Main()
+     {
+         string file_path = @"D:\camp4file.txt";
+
+         
+         FileStream fs = File.Create(file_path);
+
+         
+         fs.Close();
+
+         if (File.Exists(file_path))
+         {
+            
+             string content = "Good morning Thanya";
+             
+             File.WriteAllText(file_path, content);
+            
+            
+             Console.WriteLine("File Created and Reading The Data");
+             string file_content = File.ReadAllText(file_path);
+             Console.WriteLine(file_content);
+
+             
+             string substring = file_content.Length >= 7 ? file_content.Substring(2, 5) : "Not enough content";
+             Console.WriteLine("Retrieved characters:");
+             Console.WriteLine(substring);
+
+             
+             Console.Write("Enter destination file path: ");
+             string destinationFilePath = Console.ReadLine();
+
+             try
+             {
+                
+                 if (File.Exists(file_path))
+                 {
+                    
+                     File.Copy(file_path, destinationFilePath, true); 
+                     Console.WriteLine("File copied successfully.");
+                 }
+                 else
+                 {
+                     Console.WriteLine("Source file not found.");
+                 }
+             }
+             catch (Exception ex)
+             {
+                 Console.WriteLine("Error: " + ex.Message);
+             }
+         }
+         else
+         {
+             Console.WriteLine("File does not exist.");
+         }
+
+         Console.ReadKey(); 
+     }
+ }
+
