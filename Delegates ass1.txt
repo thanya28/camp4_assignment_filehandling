@@ -1,0 +1,67 @@
+ 1.Simple Delegate for Sum
+     
+
+   using System;
+delegate int MathOperation(int a, int b);
+int Sum(int a, int b) => a + b;
+MathOperation add = Sum;
+Console.WriteLine($"Sum of 3 and 5: {add(3, 5)}");
+
+2.Multicast Delegates
+
+
+delegate void MessageDelegate();
+void Greet() => Console.WriteLine("Hello, Thanya");
+void Greets() => Console.WriteLine("Good mrng");
+MessageDelegate message = Greet;
+message += Greets;
+message();
+
+3.. Delegate to Sort an Array
+
+delegate int Comparison(int a, int b);
+int[] numbers = { 5, 3, 8, 2, 7, 1 };
+int Ascending(int a, int b) => a.CompareTo(b);
+int Descending(int a, int b) => b.CompareTo(a);
+Array.Sort(numbers, new Comparison(Ascending));
+Console.WriteLine("Ascending Order: " + string.Join(", ", numbers));
+
+
+
+4.Delegate for Arithmetic Operations
+
+delegate double ArithmeticOperation(double x, double y);
+
+
+double Add(double a, double b) => a + b;
+double Subtract(double a, double b) => a - b;
+double Multiply(double a, double b) => a * b;
+double Divide(double a, double b) => b != 0 ? a / b : throw new DivideByZeroException("Cannot divide by zero.");
+Console.WriteLine("Choose an operation: 1-Add, 2-Subtract, 3-Multiply, 4-Divide");
+int choice = int.Parse(Console.ReadLine());
+
+ArithmeticOperation selectedOperation = choice switch
+{
+    1 => Add,
+    2 => Subtract,
+    3 => Multiply,
+    4 => Divide,
+    _ => throw new InvalidOperationException("Invalid operation selected.")
+};
+
+Console.WriteLine("Enter two numbers: ");
+double num1 = double.Parse(Console.ReadLine());
+double num2 = double.Parse(Console.ReadLine());
+Console.WriteLine($"Result: {selectedOperation(num1, num2)}");
+
+
+5. Custom Delegate for Filtering Elements
+
+
+delegate bool FilterCondition(int number);
+bool IsEven(int number) => number % 2 == 0;
+bool IsGreaterThan(int number, int threshold) => number > threshold;
+int[] numbers = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+Console.WriteLine("Even numbers: " + string.Join(", ", Array.FindAll(numbers, IsEven)));
+int threshold = 5;
+Console.WriteLine($"Numbers greater than {threshold}: " + string.Join(", ", Array.FindAll(numbers, n => IsGreaterThan(n, threshold))));
